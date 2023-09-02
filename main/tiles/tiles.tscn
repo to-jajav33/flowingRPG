@@ -6,8 +6,7 @@ albedo_color = Color(0, 0.415686, 0.0470588, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_gtnha"]
 material = SubResource("StandardMaterial3D_siobt")
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_35u7f"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbdvw"]
 
 [node name="tiles" type="Node3D"]
 
@@ -17,4 +16,4 @@ mesh = SubResource("BoxMesh_gtnha")
 [node name="StaticBody3D" type="StaticBody3D" parent="tile_grass"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tile_grass/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_35u7f")
+shape = SubResource("BoxShape3D_tbdvw")
