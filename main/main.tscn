@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdgfwx43ysrr3"]
+[gd_scene load_steps=4 format=3 uid="uid://cdgfwx43ysrr3"]
 
 [ext_resource type="MeshLibrary" uid="uid://con2ofpkrw0pj" path="res://main/tiles/tiles.tres" id="1_urqb3"]
 [ext_resource type="PackedScene" uid="uid://c4kgghoffdd0l" path="res://main/components/main_character.tscn" id="2_kv3hd"]
+[ext_resource type="PackedScene" uid="uid://b860u5rx014n2" path="res://main/components/title_screen.tscn" id="3_oeje8"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -10,11 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="title_screen" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="level" type="Node3D" parent="."]
 
@@ -28,4 +24,5 @@ metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="main_character" parent="level" instance=ExtResource("2_kv3hd")]
 
-[node name="coop" type="StaticBody3D" parent="level"]
+[node name="title_screen" parent="." instance=ExtResource("3_oeje8")]
+layout_mode = 1
