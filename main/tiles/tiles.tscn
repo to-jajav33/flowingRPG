@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dogykm7syiqxw"]
+[gd_scene load_steps=7 format=3 uid="uid://dogykm7syiqxw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_siobt"]
 albedo_color = Color(0, 0.415686, 0.0470588, 1)
@@ -7,6 +7,14 @@ albedo_color = Color(0, 0.415686, 0.0470588, 1)
 material = SubResource("StandardMaterial3D_siobt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbdvw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhqq1"]
+albedo_color = Color(0.00784314, 0, 0.945098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ywi3"]
+material = SubResource("StandardMaterial3D_fhqq1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3ep1"]
 
 [node name="tiles" type="Node3D"]
 
@@ -17,3 +25,12 @@ mesh = SubResource("BoxMesh_gtnha")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tile_grass/StaticBody3D"]
 shape = SubResource("BoxShape3D_tbdvw")
+
+[node name="tile_water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11715, 0, 0)
+mesh = SubResource("BoxMesh_7ywi3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tile_water"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tile_water/StaticBody3D"]
+shape = SubResource("BoxShape3D_a3ep1")
