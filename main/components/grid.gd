@@ -37,13 +37,16 @@ func generateChunk(globalPos: Vector3):
 				print(tileGroundVal);
 				
 			var tileName = "tile_grass";
+			currMapPos.y = -1;
 			
 			var startBufferW = halfW * 0.5;
 			var startBufferH = halfH * 0.5;
 			if ((currMapPos.x < startBufferW and currMapPos.x > -startBufferW) and (currMapPos.z < startBufferH and currMapPos.z > -startBufferH)):
 				tileName = "tile_grass";
+				currMapPos.y = -1;
 			elif (tileGroundVal < 0.10):
 				tileName = "tile_water";
+				currMapPos.y = -2;
 			self.set_cell_item(currMapPos, self.mesh_library.find_item_by_name(tileName))
 			continue;
 		continue;
