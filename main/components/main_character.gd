@@ -7,7 +7,13 @@ var dir = Vector3.ZERO;
 func _ready():
 	set_process(false);
 	set_physics_process(true);
+	Common.beginGamePlay();
+	Common.signal_start_gameplay.connect(_on_signal_start_gameplay);
 	pass # Replace with function body.
+
+func _on_signal_start_gameplay():
+	$Camera3D/timer_light.startMorning();
+	return;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

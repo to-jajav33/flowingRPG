@@ -10,6 +10,7 @@ func _ready():
 func _input(event):
 	if (not (event is InputEventMouse)):
 		self.visible = false;
+		Common.emit_signal("signal_start_gameplay");
 		set_process_input(false);
 		return;
 	pass;

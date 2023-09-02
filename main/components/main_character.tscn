@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4kgghoffdd0l"]
+[gd_scene load_steps=4 format=3 uid="uid://c4kgghoffdd0l"]
 
 [ext_resource type="Script" path="res://main/components/main_character.gd" id="1_rj8xb"]
+[ext_resource type="PackedScene" uid="uid://bn3foeduqbgbj" path="res://main/components/timer_light.tscn" id="2_v5dlp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3fpq6"]
 
@@ -23,7 +24,4 @@ projection = 1
 current = true
 size = 10.0
 
-[node name="omnilight3d" type="OmniLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.24322e-08, -1.42828)
-light_energy = 9.835
-omni_range = 20.0
+[node name="timer_light" parent="Camera3D" instance=ExtResource("2_v5dlp")]
