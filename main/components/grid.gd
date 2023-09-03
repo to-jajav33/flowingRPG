@@ -86,8 +86,8 @@ func addResource(currMapPos: Vector3i, floorTileName: String):
 	if (tileResourceVal < -0.4):
 		resourceTracker[mapKey] = true;
 		var resourceGrass: RigidBody3D = load("res://main/components/resource_grass.tscn").instantiate();
-		resourceGrass.global_position = self.to_global(self.map_to_local(currMapPos + Vector3i.UP));
 		for mainChar in self.get_tree().get_nodes_in_group("group_main_character"):
 			resourceGrass.add_collision_exception_with(mainChar);
 		self.add_child(resourceGrass);
+		resourceGrass.global_position = self.to_global(self.map_to_local(currMapPos + Vector3i.UP));
 	return;
