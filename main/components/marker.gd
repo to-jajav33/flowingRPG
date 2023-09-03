@@ -39,7 +39,7 @@ func _physics_process(delta):
 	var viewportPos = get_viewport().get_camera_3d().unproject_position(global_transform.origin);
 	var viewportRect = get_viewport().get_visible_rect();
 
-	var newScreenState = viewportPos.y < viewportRect.size.y && viewportPos.y > viewportRect.position.y;
+	var newScreenState = viewportPos.x < viewportRect.size.x && viewportPos.x > viewportRect.position.x && viewportPos.y < viewportRect.size.y && viewportPos.y > viewportRect.position.y;
 	# if we hit nothing - the flare is visible, so we show it
 	if (self.lastScreenState != newScreenState):
 		if newScreenState:
