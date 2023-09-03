@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bawuqraio356y"]
+
+[ext_resource type="Script" path="res://main/components/marker.gd" id="1_kyaqb"]
+
+[node name="marker" type="Node3D"]
+script = ExtResource("1_kyaqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

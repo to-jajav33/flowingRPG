@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdgfwx43ysrr3"]
+[gd_scene load_steps=5 format=3 uid="uid://cdgfwx43ysrr3"]
 
 [ext_resource type="PackedScene" uid="uid://cxxpw7c2m4xt4" path="res://main/components/grid.tscn" id="1_w64v2"]
 [ext_resource type="PackedScene" uid="uid://c4kgghoffdd0l" path="res://main/components/main_character.tscn" id="2_kv3hd"]
 [ext_resource type="PackedScene" uid="uid://b860u5rx014n2" path="res://main/components/title_screen.tscn" id="3_oeje8"]
+[ext_resource type="PackedScene" uid="uid://cl76a8bdb26fe" path="res://main/components/coop.tscn" id="3_t2sr7"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -18,6 +19,10 @@ grow_vertical = 2
 objToFollowPath = NodePath("../main_character")
 
 [node name="main_character" parent="level" instance=ExtResource("2_kv3hd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548514, 0)
+
+[node name="coop" parent="level" instance=ExtResource("3_t2sr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454178, -1.96864)
 
 [node name="title_screen" parent="." instance=ExtResource("3_oeje8")]
 layout_mode = 1
