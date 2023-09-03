@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://e5it3xfhyeli"]
+[gd_scene load_steps=8 format=3 uid="uid://e5it3xfhyeli"]
 
 [ext_resource type="Script" path="res://main/components/resource_grass.gd" id="1_bpb8r"]
 
@@ -22,8 +22,17 @@ height = 0.5
 height = 0.5
 radius = 0.25
 
+[sub_resource type="Animation" id="Animation_xm7qw"]
+resource_name = "anim_collecting"
+length = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hqje"]
+_data = {
+"anim_collecting": SubResource("Animation_xm7qw")
+}
+
 [node name="resource_grass" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388804, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251045, 0)
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
@@ -38,3 +47,8 @@ mesh = SubResource("CylinderMesh_7ahb5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_fo4hb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1hqje")
+}

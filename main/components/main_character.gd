@@ -2,6 +2,7 @@ extends RigidBody3D
 
 const SPEED = 10.0;
 var dir = Vector3.ZERO;
+var nearbyResources = [];
 
 func _init():
 	self.add_to_group("group_main_character");
@@ -11,9 +12,19 @@ func _init():
 func _ready():
 	set_process(false);
 	set_physics_process(true);
+	set_process_input(true);
+	
 	Common.beginGamePlay();
 	Common.signal_start_gameplay.connect(_on_signal_start_gameplay);
 	pass # Replace with function body.
+
+func _input(event):
+	if (Input.is_action_just_pressed("ui_select")):
+		if (!nearbyResources.is_empty()):
+			var res = nearbyResources[0];
+			res.startCollectingResource(self);
+		return;
+	return;
 
 func _on_signal_start_gameplay():
 	$Camera3D/timer_light.startMorning();
@@ -31,14 +42,19 @@ func _physics_process(delta):
 
 
 func _on_area_3d_body_entered(body):
+	if (body.has_method("startCollectingResource")):
+		if (!nearbyResources.has(body)):
+			nearbyResources.push_back(body);
+	
 	if (body.has_method("highlightSelectable")):
 		body.highlightSelectable();
-		return;
 	pass # Replace with function body.
 
 
 func _on_area_3d_body_exited(body):
+	if (nearbyResources.has(body)):
+		nearbyResources.erase(body);
+		
 	if (body.has_method("unhighlightSelectable")):
 		body.unhighlightSelectable();
-		return;
 	pass # Replace with function body.
