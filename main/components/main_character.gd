@@ -3,6 +3,10 @@ extends RigidBody3D
 const SPEED = 10.0;
 var dir = Vector3.ZERO;
 
+func _init():
+	self.add_to_group("group_main_character");
+	return;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false);
