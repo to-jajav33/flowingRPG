@@ -57,11 +57,7 @@ func addFloor(currMapPos: Vector3i):
 	var tileName = TILE_NAMES.tile_grass;
 	currMapPos.y = -1;
 	
-	var halfW = ceil(chunkMapWidth * 0.5);
-	var halfH = ceil(chunkMapHeight * 0.5);
-	var startBufferW = halfW * 0.5;
-	var startBufferH = halfH * 0.5;
-	if ((currMapPos.x < startBufferW and currMapPos.x > -startBufferW) and (currMapPos.z < startBufferH and currMapPos.z > -startBufferH)):
+	if (self.isWithinStartPos(currMapPos)):
 		tileName = TILE_NAMES.tile_grass;
 		currMapPos.y = -1;
 	elif (tileGroundVal < 0.10):
@@ -71,6 +67,9 @@ func addFloor(currMapPos: Vector3i):
 	return tileName;
 
 func addResource(currMapPos: Vector3i, floorTileName: String):
+	if (self.isWithinStartPos(currMapPos)):
+		return;
+	
 	var mapKey = str(currMapPos.x)+ '_' +str(currMapPos.z);
 	if (resourceTracker.has(mapKey)):
 		return;
@@ -83,11 +82,18 @@ func addResource(currMapPos: Vector3i, floorTileName: String):
 #		print("****resource tiles****");
 #		print(tileResourceVal);
 	
-	if (tileResourceVal < -0.4):
+	if ((int(abs(tileResourceVal * 100.0)) % 19) == 0):
 		resourceTracker[mapKey] = true;
-		var resourceGrass: RigidBody3D = load("res://main/components/resource_grass.tscn").instantiate();
+		var resourceGrass: RigidBody3D = load("res://main/components/resource_grass.tscn").instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE);
 		for mainChar in self.get_tree().get_nodes_in_group("group_main_character"):
 			resourceGrass.add_collision_exception_with(mainChar);
 		self.add_child(resourceGrass);
 		resourceGrass.global_position = self.to_global(self.map_to_local(currMapPos + Vector3i.UP));
 	return;
+
+func isWithinStartPos(currMapPos):
+	var halfW = ceil(chunkMapWidth * 0.5);
+	var halfH = ceil(chunkMapHeight * 0.5);
+	var startBufferW = halfW * 0.5;
+	var startBufferH = halfH * 0.5;
+	return ((currMapPos.x < startBufferW and currMapPos.x > -startBufferW) and (currMapPos.z < startBufferH and currMapPos.z > -startBufferH));

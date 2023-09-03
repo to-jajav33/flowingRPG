@@ -28,3 +28,17 @@ func _physics_process(delta):
 	var finalVel = dir * SPEED;
 	self.apply_central_force((finalVel - self.linear_velocity) / delta);
 	pass
+
+
+func _on_area_3d_body_entered(body):
+	if (body.has_method("highlightSelectable")):
+		body.highlightSelectable();
+		return;
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_exited(body):
+	if (body.has_method("unhighlightSelectable")):
+		body.unhighlightSelectable();
+		return;
+	pass # Replace with function body.

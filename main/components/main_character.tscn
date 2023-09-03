@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4kgghoffdd0l"]
+[gd_scene load_steps=5 format=3 uid="uid://c4kgghoffdd0l"]
 
 [ext_resource type="Script" path="res://main/components/main_character.gd" id="1_rj8xb"]
 [ext_resource type="PackedScene" uid="uid://bn3foeduqbgbj" path="res://main/components/timer_light.tscn" id="2_v5dlp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3fpq6"]
+radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_31584"]
+height = 1.0
+radius = 2.0
 
 [node name="main_character" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11199, 0)
 can_sleep = false
 lock_rotation = true
 script = ExtResource("1_rj8xb")
@@ -15,13 +19,23 @@ script = ExtResource("1_rj8xb")
 shape = SubResource("SphereShape3D_3fpq6")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 1.0
 radial_segments = 32
 rings = 32
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.64242, 0)
+transform = Transform3D(1, 0, 0, 0, -0.000942543, 1, 0, -1, -0.000942543, 0, 2.642, 0)
 projection = 1
 current = true
 size = 10.0
 
 [node name="timer_light" parent="Camera3D" instance=ExtResource("2_v5dlp")]
+
+[node name="Area3D" type="Area3D" parent="."]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_31584")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
